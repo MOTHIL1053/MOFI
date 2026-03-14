@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreamFinder | Advanced Movie Discovery</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="nav-brand" id="logoBtn">
+            <i class="fas fa-play-circle text-accent"></i>
+            <span class="brand-text">MovieFinder</span>
+        </div>
+
+        <div class="nav-center">
+            <!-- Genre Links -->
+            <ul class="genre-list">
+                <li class="genre-item" data-id="28">Action</li>
+                <li class="genre-item" data-id="35">Comedy</li>
+                <li class="genre-item" data-id="27">Horror</li>
+                <li class="genre-item" data-id="10749">Romance</li>
+                <li class="genre-item" data-id="53">Thriller</li>
+            </ul>
+        </div>
+
+        <div class="nav-right">
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" placeholder="Search movies..." autocomplete="off">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+            <button id="wishlistBtn" class="wishlist-toggle" title="My Wishlist">
+                <i class="fas fa-heart"></i>
+                <span id="wishlistCount" class="badge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-container">
+        <!-- Dynamic Section Header -->
+        <div class="section-header">
+            <h2 id="sectionTitle">Trending Now</h2>
+            <div class="divider"></div>
+        </div>
+
+        <!-- UI State Messages -->
+        <div id="loadingIndicator" class="state-msg hidden">
+            <div class="spinner"></div>
+            <p>Loading magic...</p>
+        </div>
+        <div id="errorIndicator" class="state-msg error hidden">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p id="errorText">Movie not found.</p>
+        </div>
+        <div id="emptyWishlistIndicator" class="state-msg hidden">
+            <i class="far fa-heart"></i>
+            <p>Your wishlist is empty. Start exploring!</p>
+        </div>
+
+        <!-- Movie Results Grid -->
+        <div class="movie-grid" id="movieGrid">
+            <!-- Cards injected via JS -->
+        </div>
+    </main>
+
+    <!-- Full Screen Details / Trailer Modal -->
+    <div id="movieModal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <button id="closeModalBtn" class="close-btn"><i class="fas fa-times"></i></button>
+
+            <div class="modal-layout">
+                <!-- Modal Left: Poster / Action -->
+                <div class="modal-left">
+                    <img id="modalPoster" src="" alt="Movie Poster">
+                    <button id="modalWishlistBtn" class="btn btn-primary btn-full">
+                        <i class="fas fa-heart"></i> <span id="modalWishlistText">Add to Wishlist</span>
+                    </button>
+                </div>
+
+                <!-- Modal Right: Details & Trailer -->
+                <div class="modal-right">
+                    <h2 id="modalTitle" class="modal-title">Movie Title</h2>
+
+                    <div class="modal-meta">
+                        <span class="meta-item accent"><i class="fas fa-star"></i> <span
+                                id="modalRating">--</span></span>
+                        <span class="meta-item"><i class="fas fa-calendar-alt"></i> <span
+                                id="modalYear">--</span></span>
+                        <span class="meta-item"><i class="fas fa-clock"></i> <span id="modalRuntime">--</span></span>
+                        <span class="meta-item border-badge" id="modalGenre">Genre</span>
+                    </div>
+
+                    <div class="modal-plot">
+                        <h3>Plot Summary</h3>
+                        <p id="modalPlot">Plot goes here...</p>
+                    </div>
+
+                    <div class="modal-credits">
+                        <p><strong><i class="fas fa-users"></i> Cast:</strong> <span id="modalActors">--</span></p>
+                        <p><strong><i class="fas fa-video"></i> Director:</strong> <span id="modalDirector">--</span>
+                        </p>
+                        <p><strong><i class="fas fa-pen"></i> Writer:</strong> <span id="modalWriter">--</span></p>
+                    </div>
+
+                    <!-- Trailer Section -->
+                    <div class="trailer-section" id="trailerSection">
+                        <h3><i class="fab fa-youtube text-accent"></i> Official Trailer</h3>
+                        <div id="trailerLoading" class="trailer-loading hidden">
+                            <div class="spinner small"></div> Loading trailer...
+                        </div>
+                        <div id="trailerError" class="trailer-error hidden">Trailer unavailable.</div>
+                        <div class="video-container hidden" id="videoContainer">
+                            <iframe id="trailerIframe" src="" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast hidden">
+        <i class="fas fa-check-circle"></i> Added to wishlist!
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
