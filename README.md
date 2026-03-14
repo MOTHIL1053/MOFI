@@ -19,4 +19,9 @@ MovieFinder is a responsive web application that allows users to discover movies
 - Font Awesome Icons
 - Google Fonts
 
-## 📂 Project Structure
+## 🌟 Future Improvements
+
+- Add user authentication
+- Create a personal watchlist feature
+- Add trending & recommended movies
+- Improve filtering and sorting options
